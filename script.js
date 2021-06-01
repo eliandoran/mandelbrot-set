@@ -32,7 +32,7 @@ function draw(canvasEl, config) {
     const ctx = canvasEl.getContext("2d");
     const styleFn = colorSchemes[scheme].getColorScheme(ctx);
 
-    const magnificationFactor = 200;
+    const magnificationFactor = config.magnificationFactor;
     const panX = 2;
     const panY = 1.5;
     for (let x=0; x < width; x++) {
