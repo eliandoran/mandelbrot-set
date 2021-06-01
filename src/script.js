@@ -21,6 +21,8 @@ function getMandelbrotSetPercentage(numIterations, x, y) {
 }
 
 function draw(canvasEl, config) {
+    canvasEl.className = "loading";
+
     const width = window.innerWidth;
     const height = window.innerHeight;
     
@@ -53,6 +55,11 @@ function draw(canvasEl, config) {
                     const percentage = getMandelbrotSetPercentage(numIterations, absX, absY);
                     styleFn(percentage);
                     ctx.fillRect(x, y, 1, 1);
+                }
+
+                // Check if drawing finished.
+                if (y >= height) {
+                    canvasEl.className = "";
                 }
             }
         }, 0);

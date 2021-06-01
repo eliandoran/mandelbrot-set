@@ -7,6 +7,14 @@ body {
     font-size: 12px;
 }
 
+#drawing {
+    cursor: crosshair;
+}
+
+#drawing.loading {
+    cursor: wait;
+}
+
 section.config-pane {
     position: absolute;
     top: 2em;
