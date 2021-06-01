@@ -76,6 +76,7 @@ export default function draw(canvasEl, config) {
         ]);
     }
 
+    const lastStepY = Math.floor(height / stepSize)
     for (let baseY = 0; baseY < height; baseY += stepSize) {
         setTimeout(() => {
             for (let y = baseY; y < baseY + stepSize; y++) {
@@ -88,7 +89,7 @@ export default function draw(canvasEl, config) {
                 }
 
                 // Check if drawing finished.
-                if (y >= height) {
+                if (y >= lastStepY) {
                     canvasEl.className = "";
                     displayLoadedInfo();
                 } else {
