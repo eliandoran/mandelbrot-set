@@ -16,8 +16,8 @@ function getMandelbrotSetPercentage(numIterations, x, y) {
 }
 
 function draw(canvasEl, config) {
-    const width = 800;
-    const height = 600;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
 
     // Adjust canvas size.
     canvasEl.width = width;
