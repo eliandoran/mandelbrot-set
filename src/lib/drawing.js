@@ -26,8 +26,6 @@ export default function draw(canvasEl, config, callback) {
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    
-
     const scheme = config.scheme;
     const numIterations = config.numIterations;
 
@@ -52,7 +50,7 @@ export default function draw(canvasEl, config, callback) {
     const panX = config.panX;
     const panY = config.panY;    
     
-    const stepSize = 10;
+    const stepSize = 40;
 
     function setInfoPanel(rows) {
         infoPaneEl.innerHTML = rows.join("<br/>");
