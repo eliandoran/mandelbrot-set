@@ -63,14 +63,10 @@ export default function initializeConfigPane(config) {
         const actWidth = (data.width * magnificationFactor);        
         const fact = (actX + actWidth) / actX;
 
-        console.log("Actual", actX, actY, actWidth, fact);
-
         drawConfig.panX -= (data.x / magnificationFactor);
         drawConfig.panY -= (data.y / magnificationFactor);
         drawConfig.magnificationFactor += magnificationFactor * fact;
         redraw();
-
-        console.log(data);
     });
 
     // Populate with data.

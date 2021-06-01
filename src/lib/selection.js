@@ -51,7 +51,6 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
 
     function onPointerDown(e) {
         const { x, y } = getPointerPosition(e);
-        console.log(x, y);
         
         isHolding = true;
         selectionX = x;
