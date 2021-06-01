@@ -8,14 +8,16 @@
 
         <section class="config-pane">
             <form>
-                <label>  
-                    Color Scheme                  
-                </label>                
+                <div class="row">
+                    <label>Color Scheme</label>                    
+                    <select id="color-scheme"></select>
+                </div>
 
-                <select id="color-scheme">
-                </select>
-
-                <button type="button" id="zoom-in">Zoom In</button>
+                <div class="row">
+                    <label>Zoom</label>
+                    <button type="button" id="zoom-in">+</button>
+                    <button type="button" id="zoom-out">-</button>
+                </div>
             </form>
         </section>
 
