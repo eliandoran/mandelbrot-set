@@ -42,15 +42,18 @@ function draw(canvasEl, config) {
     const panX = config.panX;
     const panY = config.panY;    
     
-    for (let y=0; y < height; y++) {
+    const stepSize = 10;
+
+    for (let baseY = 0; baseY < height; baseY += stepSize) {
         setTimeout(() => {
-            console.log("Timeout")
-            for (let x=0; x < width; x++) {
-                const absX = (x / magnificationFactor - panX);
-                const absY = (y / magnificationFactor - panY);
-                const percentage = getMandelbrotSetPercentage(numIterations, absX, absY);
-                styleFn(percentage);
-                ctx.fillRect(x, y, 1, 1);
+            for (let y = baseY; y < baseY + stepSize; y++) {
+                for (let x=0; x < width; x++) {
+                    const absX = (x / magnificationFactor - panX);
+                    const absY = (y / magnificationFactor - panY);
+                    const percentage = getMandelbrotSetPercentage(numIterations, absX, absY);
+                    styleFn(percentage);
+                    ctx.fillRect(x, y, 1, 1);
+                }
             }
         }, 0);
     }
