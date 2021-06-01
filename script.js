@@ -47,9 +47,7 @@ function draw(canvasEl, config) {
 }
 
 const canvasEl = document.getElementById("drawing");
-draw(canvasEl, {
-    numIterations: 100,
-    scheme: "hsl_blue"
+initializeConfigPane({
+    canvasEl,
+    draw
 });
-
-initializeConfigPane();
