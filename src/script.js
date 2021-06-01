@@ -36,6 +36,8 @@ function draw(canvasEl, config) {
     const ctx = canvasEl.getContext("2d");
     const styleFn = colorSchemes[scheme].getColorScheme(ctx);
 
+    const renderStart = Date.now();
+
     // Fill with blank color.
     ctx.fillStyle = "#00000";
     ctx.fillRect(0, 0, width, height);
@@ -62,12 +64,14 @@ function draw(canvasEl, config) {
         const firstY = (0 / magnificationFactor - panY);
         const lastX = (width / magnificationFactor - panX);
         const lastY = (height / magnificationFactor - panX);
+        const timeSpent = Date.now() - renderStart;
     
         setInfoPanel([
             `Viewport size: ${width}x${height}`,
             `Magnification factor: ${magnificationFactor.toFixed(2)}`,
             `Pan: (${panX.toFixed(4)}, ${panY.toFixed(4)})`,
-            `Abs. coords: (${firstX.toFixed(4)} ${firstY.toFixed(4)}) (${lastX.toFixed(4)} ${lastY.toFixed(4)})`
+            `Abs. coords: (${firstX.toFixed(4)} ${firstY.toFixed(4)}) (${lastX.toFixed(4)} ${lastY.toFixed(4)})`,
+            `Render time: ${timeSpent} ms`
         ]);
     }
 
