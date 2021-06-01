@@ -3,7 +3,23 @@ export default {
         title: "Red (HSL)",
         getColorScheme: (ctx) => {
             return (percentage) => {
-                ctx.fillStyle = `hsl(0, 100%, ${percentage * 100}%)`;
+                ctx.fillStyle = `hsl(0, 90%, ${percentage * 100}%)`;
+            };
+        } 
+    },
+    hsl_green: {
+        title: "Green (HSL)",
+        getColorScheme: (ctx) => {
+            return (percentage) => {
+                ctx.fillStyle = `hsl(150, 90%, ${percentage * 100}%)`;
+            };
+        } 
+    },
+    hsl_cyan: {
+        title: "Cyan (HSL)",
+        getColorScheme: (ctx) => {
+            return (percentage) => {
+                ctx.fillStyle = `hsl(190, 90%, ${percentage * 100}%)`;
             };
         } 
     },
@@ -11,9 +27,25 @@ export default {
         title: "Blue (HSL)",
         getColorScheme: (ctx) => {
             return (percentage) => {
-                ctx.fillStyle = `hsl(200, 100%, ${percentage * 100}%)`;
+                ctx.fillStyle = `hsl(210, 90%, ${percentage * 100}%)`;
             };
-        }
+        } 
+    },
+    hsl_purple: {
+        title: "Purple (HSL)",
+        getColorScheme: (ctx) => {
+            return (percentage) => {
+                ctx.fillStyle = `hsl(270, 90%, ${percentage * 100}%)`;
+            };
+        } 
+    },
+    hsl_magenta: {
+        title: "Magenta (HSL)",
+        getColorScheme: (ctx) => {
+            return (percentage) => {
+                ctx.fillStyle = `hsl(310, 90%, ${percentage * 100}%)`;
+            };
+        } 
     },
     greyscale: {
         title: "Greyscale",
