@@ -46,6 +46,28 @@ function draw(canvasEl, config) {
     
     const stepSize = 10;
 
+    function setInfoPanel(rows) {
+        infoPaneEl.innerHTML = rows.join("<br/>");
+    }
+
+    function displayLoadingInfo() {
+        setInfoPanel([ "Rendering Mandelbrot Set..." ]);
+    }
+    
+    function displayLoadedInfo() {
+        const firstX = (0 / magnificationFactor - panX);
+        const firstY = (0 / magnificationFactor - panY);
+        const lastX = (width / magnificationFactor - panX);
+        const lastY = (height / magnificationFactor - panX);
+    
+        setInfoPanel([
+            `Viewport size: ${width}x${height}`,
+            `Magnification factor: ${magnificationFactor.toFixed(2)}`,
+            `Pan: (${panX.toFixed(4)}, ${panY.toFixed(4)})`,
+            `Abs. coords: (${firstX.toFixed(4)} ${firstY.toFixed(4)}) (${lastX.toFixed(4)} ${lastY.toFixed(4)})`
+        ]);
+    }
+
     for (let baseY = 0; baseY < height; baseY += stepSize) {
         setTimeout(() => {
             for (let y = baseY; y < baseY + stepSize; y++) {
@@ -60,23 +82,13 @@ function draw(canvasEl, config) {
                 // Check if drawing finished.
                 if (y >= height) {
                     canvasEl.className = "";
+                    displayLoadedInfo();
                 }
             }
         }, 0);
     }
-
-    const firstX = (0 / magnificationFactor - panX);
-    const firstY = (0 / magnificationFactor - panY);
-    const lastX = (width / magnificationFactor - panX);
-    const lastY = (height / magnificationFactor - panX);
-
-    const infoFields = [
-        `Viewport size: ${width}x${height}`,
-        `Magnification factor: ${magnificationFactor.toFixed(2)}`,
-        `Pan: (${panX.toFixed(4)}, ${panY.toFixed(4)})`,
-        `Abs. coords: (${firstX.toFixed(4)} ${firstY.toFixed(4)}) (${lastX.toFixed(4)} ${lastY.toFixed(4)})`
-    ];    
-    infoPaneEl.innerHTML = infoFields.join("<br/>");
+    
+    displayLoadingInfo();
 }
 
 const canvasEl = document.getElementById("drawing");
