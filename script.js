@@ -23,7 +23,9 @@ function draw(canvasEl, numIterations) {
     canvasEl.width = width;
     canvasEl.height = height;
 
-    const ctx = canvasEl.getContext("2d");
+    const ctx = canvasEl.getContext("2d");    
+    const scheme = "greyscale";
+    const styleFn = getColorScheme(ctx, scheme);
 
     const magnificationFactor = 200;
     const panX = 2;
@@ -33,9 +35,23 @@ function draw(canvasEl, numIterations) {
             const absX = (x / magnificationFactor - panX);
             const absY = (y / magnificationFactor - panY);
             const percentage = getMandelbrotSetPercentage(numIterations, absX, absY);
-
-            ctx.fillStyle = `hsl(0, 100%, ${percentage * 100}%)`;
+            styleFn(percentage);
             ctx.fillRect(x, y, 1, 1);
+        }
+    }
+}
+
+function getColorScheme(ctx, scheme) {
+    switch (scheme) {
+        case "hsl":
+            return (percentage) => {
+                ctx.fillStyle = `hsl(0, 100%, ${percentage * 100}%)`;
+            }
+        case "greyscale": {
+            return (percentage) => {
+                let comp = (255 * percentage);
+                ctx.fillStyle = `rgb(${comp}, ${comp}, ${comp})`;
+            }
         }
     }
 }
