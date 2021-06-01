@@ -22,21 +22,12 @@ export default function initializeConfigPane(config) {
         magnificationFactor: MAGNIFICATION_DEFAULT,
         panX: PAN_DEFAULT_X,
         panY: PAN_DEFAULT_Y,
-        scheme: "hsl_blue",
-        clear: true
+        scheme: "hsl_blue"
     }
 
     function redraw() {
-        const numIterations = drawConfig.numIterations;
-
         setTimeout(() => {
-            drawConfig.clear = true;
-            drawConfig.numIterations = 50;
-            config.draw(canvasEl, drawConfig, () => {
-                drawConfig.numIterations = numIterations;
-                drawConfig.clear = false;
-                config.draw(canvasEl, drawConfig, () => {});
-            });
+            config.draw(canvasEl, drawConfig);
         }, 0);
     }
 
