@@ -28,9 +28,27 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
         selectionEl.style.height = `${selectionHeight}px`;
     }
 
-    canvasEl.addEventListener("mousedown", (e) => {
-        const x = e.clientX;
-        const y = e.clientY;
+    function getPointerPosition(e) {
+        if (e.clientX && e.clientY) {
+            return {
+                x: e.clientX,
+                y: e.clientY
+            }
+        }
+
+        if (e.targetTouches && e.targetTouches.length > 0) {
+            return {
+                x: e.targetTouches[0].clientX,
+                y: e.targetTouches[0].clientY
+            }
+        }
+
+        return null;
+    }
+
+    function onPointerDown(e) {
+        const { x, y } = getPointerPosition(e);
+        console.log(x, y);
         
         isHolding = true;
         selectionX = x;
@@ -41,15 +59,14 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
 
         originX = x;
         originY = y;
-    });
-
-    canvasEl.addEventListener("mousemove", (e) => {
+    }
+    
+    function onPointerMove(e) {
         if (!isHolding) {
             return;
         }
 
-        const x = e.clientX;
-        const y = e.clientY;
+        const { x, y } = getPointerPosition(e);
 
         if (x >= originX) {
             const deltaX = (x - originX);
@@ -72,9 +89,9 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
         }
 
         updateStyle();
-    });
+    }
 
-    canvasEl.addEventListener("mouseup", (e) => {        
+    function onPointerUp(e) {
         selectionEl.style.display = "none";
         isHolding = false;
         updateStyle();
@@ -85,5 +102,13 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
             width: selectionWidth,
             height: selectionHeight
         });
-    });
+    }
+
+    canvasEl.addEventListener("mousedown", onPointerDown);
+    canvasEl.addEventListener("mousemove", onPointerMove);
+    canvasEl.addEventListener("mouseup", onPointerUp);
+
+    canvasEl.addEventListener("touchstart", onPointerDown);
+    canvasEl.addEventListener("touchmove", onPointerMove);
+    canvasEl.addEventListener("touchend", onPointerUp);
 }
