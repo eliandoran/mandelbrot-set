@@ -28,6 +28,10 @@ section.config-pane .row {
     margin: 1em 0;
 }
 
+section.config-pane input[type="number"] {
+    width: 40%;
+}
+
 section.info-pane {
     position: absolute;
     left: 1em;

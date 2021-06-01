@@ -56,9 +56,8 @@ function draw(canvasEl, config) {
     const infoFields = [
         `Viewport size: ${width}x${height}`,
         `Magnification factor: ${magnificationFactor.toFixed(2)}`,
-        `Num. iterations: ${numIterations}`,
         `Pan: (${panX.toFixed(4)}, ${panY.toFixed(4)})`,
-        `Abs: (${firstX.toFixed(4)} ${firstY.toFixed(4)}) (${lastX.toFixed(4)} ${lastY.toFixed(4)})`
+        `Abs. coords: (${firstX.toFixed(4)} ${firstY.toFixed(4)}) (${lastX.toFixed(4)} ${lastY.toFixed(4)})`
     ];    
     infoPaneEl.innerHTML = infoFields.join("<br/>");
 }
