@@ -1,7 +1,7 @@
-function inMandelbrotSet(x, y) {
+function inMandelbrotSet(numIterations, x, y) {
     let resultReal = x;
     let resultImag = y;
-    for (let i=0; i<10; i++) {
+    for (let i=0; i<numIterations; i++) {
         const tempReal = (resultReal * resultReal - resultImag * resultImag + x);
         const tempImag = (2 * resultReal * resultImag + y);
         resultReal = tempReal;
@@ -15,7 +15,7 @@ function inMandelbrotSet(x, y) {
     return false;
 }
 
-function draw(canvasEl) {
+function draw(canvasEl, numIterations) {
     const width = 800;
     const height = 600;
 
@@ -32,7 +32,7 @@ function draw(canvasEl) {
         for (let y=0; y < height; y++) {
             const absX = (x / magnificationFactor - panX);
             const absY = (y / magnificationFactor - panY);
-            if (inMandelbrotSet(absX, absY)) {
+            if (inMandelbrotSet(numIterations, absX, absY)) {
                 ctx.fillRect(x, y, 1, 1);
             }
         }
@@ -40,4 +40,4 @@ function draw(canvasEl) {
 }
 
 const canvasEl = document.getElementById("drawing");
-draw(canvasEl);
+draw(canvasEl, 100);
