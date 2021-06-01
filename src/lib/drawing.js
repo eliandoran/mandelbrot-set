@@ -76,7 +76,7 @@ export default function draw(canvasEl, config) {
         ]);
     }
 
-    const lastStepY = Math.floor(height / stepSize)
+    const lastStepY = stepSize * (Math.floor(height / stepSize) - 1);
     for (let baseY = 0; baseY < height; baseY += stepSize) {
         setTimeout(() => {
             for (let y = baseY; y < baseY + stepSize; y++) {
