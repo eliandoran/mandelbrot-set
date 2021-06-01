@@ -32,7 +32,9 @@ export default function draw(canvasEl, config) {
     const scheme = config.scheme;
     const numIterations = config.numIterations;
 
-    const ctx = canvasEl.getContext("2d");
+    const ctx = canvasEl.getContext("2d", {
+        alpha: false
+    });
     const styleFn = colorSchemes[scheme].getColorScheme(ctx);
 
     const renderStart = Date.now();
