@@ -17,7 +17,8 @@ function getMandelbrotSetPercentage(numIterations, x, y) {
     return 0;
 }
 
-export default function draw(canvasEl, config) {
+export default function draw(canvasEl, config, callback) {
+    console.log("Draw");
     const infoPaneEl = document.getElementById("info-pane");
 
     canvasEl.className = "loading";
@@ -25,9 +26,7 @@ export default function draw(canvasEl, config) {
     const width = window.innerWidth;
     const height = window.innerHeight;
     
-    // Adjust canvas size.
-    canvasEl.width = width;
-    canvasEl.height = height;
+    
 
     const scheme = config.scheme;
     const numIterations = config.numIterations;
@@ -40,8 +39,14 @@ export default function draw(canvasEl, config) {
     const renderStart = Date.now();
 
     // Fill with blank color.
-    ctx.fillStyle = "#00000";
-    ctx.fillRect(0, 0, width, height);
+    if (config.clear) {
+        // Adjust canvas size.
+        canvasEl.width = width;
+        canvasEl.height = height;
+
+        ctx.fillStyle = "#00000";
+        ctx.fillRect(0, 0, width, height);
+    }
 
     const magnificationFactor = config.magnificationFactor;
     const panX = config.panX;
@@ -77,6 +82,8 @@ export default function draw(canvasEl, config) {
     }
 
     const lastStepY = stepSize * (Math.floor(height / stepSize) - 1);
+    let finished = false;
+
     for (let baseY = 0; baseY < height; baseY += stepSize) {
         setTimeout(() => {
             for (let y = baseY; y < baseY + stepSize; y++) {
@@ -88,13 +95,19 @@ export default function draw(canvasEl, config) {
                     ctx.fillRect(x, y, 1, 1);
                 }
 
+                if (finished) {
+                    return;
+                }
+
                 // Check if drawing finished.
                 if (y >= lastStepY) {
                     canvasEl.className = "";
                     displayLoadedInfo();
+                    callback();
+                    finished = true;
                 } else {
                     const progress = (baseY / height);
-                    displayLoadingInfo(progress);
+                    displayLoadingInfo(progress);                    
                 }
             }
         }, 0);
