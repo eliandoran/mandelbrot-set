@@ -23,7 +23,7 @@ function getMandelbrotSetPercentage(numIterations, x, y) {
 function draw(canvasEl, config) {
     const width = window.innerWidth;
     const height = window.innerHeight;
-
+    
     // Adjust canvas size.
     canvasEl.width = width;
     canvasEl.height = height;
@@ -34,18 +34,25 @@ function draw(canvasEl, config) {
     const ctx = canvasEl.getContext("2d");
     const styleFn = colorSchemes[scheme].getColorScheme(ctx);
 
+    // Fill with blank color.
+    ctx.fillStyle = "#00000";
+    ctx.fillRect(0, 0, width, height);
+
     const magnificationFactor = config.magnificationFactor;
     const panX = config.panX;
     const panY = config.panY;    
-
-    for (let x=0; x < width; x++) {
-        for (let y=0; y < height; y++) {
-            const absX = (x / magnificationFactor - panX);
-            const absY = (y / magnificationFactor - panY);
-            const percentage = getMandelbrotSetPercentage(numIterations, absX, absY);
-            styleFn(percentage);
-            ctx.fillRect(x, y, 1, 1);
-        }
+    
+    for (let y=0; y < height; y++) {
+        setTimeout(() => {
+            console.log("Timeout")
+            for (let x=0; x < width; x++) {
+                const absX = (x / magnificationFactor - panX);
+                const absY = (y / magnificationFactor - panY);
+                const percentage = getMandelbrotSetPercentage(numIterations, absX, absY);
+                styleFn(percentage);
+                ctx.fillRect(x, y, 1, 1);
+            }
+        }, 0);
     }
 
     const firstX = (0 / magnificationFactor - panX);
