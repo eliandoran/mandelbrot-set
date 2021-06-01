@@ -64,6 +64,8 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
     }
     
     function onPointerMove(e) {
+        e.preventDefault();
+
         if (!isHolding) {
             return;
         }
@@ -113,6 +115,6 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
     canvasEl.addEventListener("mouseup", onPointerUp);
 
     canvasEl.addEventListener("touchstart", onPointerDown);
-    canvasEl.addEventListener("touchmove", onPointerMove);
+    canvasEl.addEventListener("touchmove", onPointerMove, { passive: false });
     canvasEl.addEventListener("touchend", onPointerUp);
 }
