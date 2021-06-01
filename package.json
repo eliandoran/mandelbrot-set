@@ -2,7 +2,7 @@
   "name": "me.eliandoran.mandelbrot-set",
   "version": "1.0.0",
   "description": "Mandelbrot Set Fractal demo in HTML 5 with Canvas ",
-  "main": "script.js",
+  "main": "src/index.html",
   "directories": {
     "lib": "lib"
   },
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/eliandoran/mandelbrot-set/issues"
   },
-  "homepage": "https://github.com/eliandoran/mandelbrot-set#readme"
+  "homepage": "https://github.com/eliandoran/mandelbrot-set#readme",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  }
 }
