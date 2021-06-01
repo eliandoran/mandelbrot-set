@@ -33,8 +33,8 @@ function draw(canvasEl, config) {
     const styleFn = colorSchemes[scheme].getColorScheme(ctx);
 
     const magnificationFactor = config.magnificationFactor;
-    const panX = 2;
-    const panY = 1.5;
+    const panX = config.panX;
+    const panY = config.panY;
     for (let x=0; x < width; x++) {
         for (let y=0; y < height; y++) {
             const absX = (x / magnificationFactor - panX);
