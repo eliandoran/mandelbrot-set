@@ -1,5 +1,7 @@
 import colorSchemes from "./lib/color_schemes";
-import { initializeConfigPane } from "./lib/config";
+import { initializeConfigPane } from "./lib/config_pane";
+
+const infoPaneEl = document.getElementById("info-pane");
 
 function getMandelbrotSetPercentage(numIterations, x, y) {
     let resultReal = x;
@@ -44,6 +46,11 @@ function draw(canvasEl, config) {
             ctx.fillRect(x, y, 1, 1);
         }
     }
+
+    const infoFields = [
+        `Viewport size: ${width}x${height}`
+    ];    
+    infoPaneEl.innerHTML = infoFields.join("<br/>");
 }
 
 const canvasEl = document.getElementById("drawing");
