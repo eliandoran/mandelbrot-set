@@ -1,3 +1,6 @@
+const DRAG_MIN_WIDTH = 20;
+const DRAG_MIN_HEIGHT = 20;
+
 export default function initializeSelection(canvasEl, selectionEl, callback) {
     let isHolding = false;
     let originX;
@@ -96,12 +99,14 @@ export default function initializeSelection(canvasEl, selectionEl, callback) {
         isHolding = false;
         updateStyle();
 
-        callback({
-            x: selectionX,
-            y: selectionY,
-            width: selectionWidth,
-            height: selectionHeight
-        });
+        if (selectionWidth >= DRAG_MIN_WIDTH && selectionHeight >= DRAG_MIN_HEIGHT) {
+            callback({
+                x: selectionX,
+                y: selectionY,
+                width: selectionWidth,
+                height: selectionHeight
+            });
+        }
     }
 
     canvasEl.addEventListener("mousedown", onPointerDown);
