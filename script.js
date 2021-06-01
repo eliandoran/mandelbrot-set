@@ -1,4 +1,5 @@
-import colorSchemes from "./color_schemes";
+import colorSchemes from "./lib/color_schemes";
+import { initializeConfigPane } from "./lib/config";
 
 function getMandelbrotSetPercentage(numIterations, x, y) {
     let resultReal = x;
@@ -50,3 +51,5 @@ draw(canvasEl, {
     numIterations: 100,
     scheme: "hsl_blue"
 });
+
+initializeConfigPane();
