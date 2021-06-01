@@ -1,5 +1,5 @@
-const DRAG_MIN_WIDTH = 20;
-const DRAG_MIN_HEIGHT = 20;
+const DRAG_MIN_WIDTH = 30;
+const DRAG_MIN_HEIGHT = 30;
 
 export default function initializeSelection(canvasEl, selectionEl, callback) {
     let isHolding = false;
