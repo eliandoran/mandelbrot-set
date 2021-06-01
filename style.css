@@ -11,11 +11,17 @@ section.config-pane {
     position: absolute;
     top: 2em;
     right: 2em;
+    width: 20em;
     color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5em;
+    padding: 1em;
+    box-sizing: border-box;
 }
 
 section.config-pane label {
     display: block;
+    margin-bottom: 0.25em;
 }
 
 section.config-pane .row {
