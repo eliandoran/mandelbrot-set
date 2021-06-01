@@ -50,8 +50,11 @@ function draw(canvasEl, config) {
         infoPaneEl.innerHTML = rows.join("<br/>");
     }
 
-    function displayLoadingInfo() {
-        setInfoPanel([ "Rendering Mandelbrot Set..." ]);
+    function displayLoadingInfo(progress) {
+        setInfoPanel([
+            `Rendering Mandelbrot Set...`,
+            `${Math.round(progress * 100)}%`
+        ]);
     }
     
     function displayLoadedInfo() {
@@ -83,12 +86,15 @@ function draw(canvasEl, config) {
                 if (y >= height) {
                     canvasEl.className = "";
                     displayLoadedInfo();
+                } else {
+                    const progress = (baseY / height);
+                    displayLoadingInfo(progress);
                 }
             }
         }, 0);
     }
     
-    displayLoadingInfo();
+    displayLoadingInfo(0);
 }
 
 const canvasEl = document.getElementById("drawing");
