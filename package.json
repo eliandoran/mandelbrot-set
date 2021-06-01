@@ -2,12 +2,13 @@
   "name": "me.eliandoran.mandelbrot-set",
   "version": "1.0.0",
   "description": "Mandelbrot Set Fractal demo in HTML 5 with Canvas ",
-  "main": "src/index.html",
+  "main": "dist/index.html",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
