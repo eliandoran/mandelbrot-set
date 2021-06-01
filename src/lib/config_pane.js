@@ -7,7 +7,7 @@ const MAGNIFICATION_PAN_STEP = 0.2;
 const PAN_DEFAULT_X = 2;
 const PAN_DEFAULT_Y = 1.5;
 
-export function initializeConfigPane(config) {    
+export default function initializeConfigPane(config) {    
     const canvasEl = config.canvasEl;
     const colorSchemeEl = document.getElementById("color-scheme");
     const zoomInEl = document.getElementById("zoom-in");
