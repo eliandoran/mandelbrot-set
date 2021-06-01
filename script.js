@@ -25,9 +25,9 @@ function draw(canvasEl) {
 
     const ctx = canvasEl.getContext("2d");
 
-    const magnificationFactor = 600;
-    const panX = 0;
-    const panY = 0;
+    const magnificationFactor = 200;
+    const panX = 2;
+    const panY = 1.5;
     for (let x=0; x < width; x++) {
         for (let y=0; y < height; y++) {
             const absX = (x / magnificationFactor - panX);
